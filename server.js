@@ -7,13 +7,22 @@ const userRoute = require("./routes/user-route");
 const taskRoute = require("./routes/task-route");
 const categoryRoute = require("./routes/category-route");
 
+
+
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+
+app.use(cors({
+  origin: ['http://localhost:3000'], // Allow frontend domains
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed request methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+}));
+
 // Middleware
-app.use(cors());
+
 app.use(express.json());
 
 // Routes

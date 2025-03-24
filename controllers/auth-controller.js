@@ -6,10 +6,8 @@ const register = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
-    // Check if passwords match
-    if (password !== confirmPassword) {
-      return res.status(400).json({ message: "Passwords do not match" });
-    }
+    
+    
 
     // Check if the user already exists
     let user = await User.findOne({ email });
@@ -20,14 +18,15 @@ const register = async (req, res) => {
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const token = generateToken(user._id);
     // Create a new user
     user = new User({
       name,
       email,
-      token,
       password: hashedPassword,
     });
+    const token = generateToken(user._id);
+    user.token = token;
+
     await user.save();
 
  
