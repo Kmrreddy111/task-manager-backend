@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 5000;
 
 
 app.use(cors({
-  origin: ['http://localhost:3000'], // Allow frontend domains
+  origin: ['http://localhost:3000', "https://tiny-biscochitos-50f1ff.netlify.app"], // Allow frontend domains
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed request methods
   allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
 }));
